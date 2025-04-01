@@ -388,6 +388,7 @@
 
       <!-- Product Gallery Section -->
       <section class="product-gallery">
+        <div class="all_image">
         <div class="main-image">
           <img
             src="audemars piguet Royal Oak 4/Model.png"
@@ -396,6 +397,24 @@
           />
           <div class="zoom-lens"></div>
         </div>
+        <div class="thumbnail-container">
+          <div
+            class="thumbnail active"
+            data-image="audemars piguet Royal Oak 4/Model.png"
+          >
+            <img src="audemars piguet Royal Oak 4/Model.png" alt="Variation 1" />
+          </div>
+          <div class="thumbnail" data-image="audemars piguet Royal Oak 4/front_3.png">
+            <img src="audemars piguet Royal Oak 4/front_3.png" alt="Variation 2" />
+          </div>
+          <div class="thumbnail" data-image="audemars piguet Royal Oak 4/front_1.png">
+            <img src="audemars piguet Royal Oak 4/front_1.png" alt="Variation 3" />
+          </div>
+          <div class="thumbnail" data-image="audemars piguet Royal Oak 4/front_View.png">
+            <img src="audemars piguet Royal Oak 4/front_View.png" alt="Variation 4" />
+          </div>
+        </div>
+      </div>
        
       </section>
 
@@ -435,7 +454,7 @@
     </div>
   </div>
   <div class="container2">
-    <video  src="audemars piguet Royal Oak 4\ROO_15720ST-OO-A052CA-01_Mood_video_13s_16-9_No_logo_MP4 1920x1080.mp4" autoplay loop 
+    <video  src="audemars piguet Royal Oak 4/ROO_15720ST-OO-A052CA-01_Mood_video_13s_16-9_No_logo_MP4 1920x1080.mp4" autoplay loop 
     muted 
     playsinline></video>
  </div>
@@ -463,24 +482,39 @@
              <p><strong>Lug-to-Lug:</strong> 38.00 mm</p>
              <p><strong>Material:</strong> Silicon</p>
              <p><strong>Color:</strong> material of biological origin</p>
-            <!-- <p><strong>Armbandschnalle:</strong> Schließe</p>
-             <p><strong>Gehäusematerial:</strong> Material biologischen Ursprungs</p>
-             <p><strong>Farbe:</strong> Blau</p>
-             <p><strong>Bandfarbe:</strong> Blau</p>
-             <p><strong>Farbe Zifferblatt:</strong> Blau</p>
-             <p><strong>Gehäusefarbe:</strong> Blau</p>
-             <p><strong>Produktkategorie:</strong> SKIN</p>-->
          </div>
      </div>
 
      <!-- Watch Image -->
      <div class="watch-image">
-         <img src="audemars piguet Royal Oak 4\front_View.png" alt="Watch Image">
+         <img src="audemars piguet Royal Oak 4/front_View.png" alt="Watch Image">
      </div>
  </div>
 </div>
 
     <script>
+        // Thumbnail click functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const thumbnails = document.querySelectorAll('.thumbnail');
+            const mainImage = document.getElementById('mainImage');
+            
+            thumbnails.forEach(thumbnail => {
+                thumbnail.addEventListener('click', function() {
+                    // Remove active class from all thumbnails
+                    thumbnails.forEach(t => t.classList.remove('active'));
+                    
+                    // Add active class to clicked thumbnail
+                    this.classList.add('active');
+                    
+                    // Update main image
+                    const newImageSrc = this.getAttribute('data-image');
+                    if (newImageSrc) {
+                        mainImage.src = newImageSrc;
+                    }
+                });
+            });
+        });
+
         function showTab(event, tabId) {
             // Hide all tab panes
             let tabPanes = document.querySelectorAll(".tab-pane");
@@ -497,8 +531,6 @@
             event.currentTarget.classList.add("active");
         }
     </script>
-
-
 
     </main>
   </body>
